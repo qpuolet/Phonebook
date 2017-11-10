@@ -1,0 +1,43 @@
+.contact {
+    display: flex;
+    width: 300px;
+    border-radius: 3px;
+    background-color: rgba(92, 160, 151, 0.5);
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.1s;
+}
+
+.contact:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.avatar {
+    padding: 5px;
+    align-self: center;
+    min-width: 115px;
+    max-width: 115px;
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+}
+
+.contact-info {
+    padding: 20px 10px 10px 10px;
+    width: 135px;
+}
+
+.name {
+    margin: 0;
+}
+
+.email-link {
+    text-decoration: none;
+    color: black;
+}
+
+.card-manipulators {
+    position: relative;
+    top: 5px;
+    left: -5px;
+}
