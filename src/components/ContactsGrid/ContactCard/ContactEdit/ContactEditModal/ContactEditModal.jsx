@@ -35,14 +35,18 @@ export default class ContactEditModal extends React.Component {
 
         //Validation
         if(name === 'email'){
-            let emailRegEx = /^[a-zA-Z0-9\.]+@[a-zA-Z0-9]+(\-)?[a-zA-Z0-9]+(\.)?[a-zA-Z0-9]{2,6}?\.[a-zA-Z]{2,6}$/ ;
+            let emailRegEx = /^^[a-zA-z\d\.]+@+[a-zA-z\d\.]{2,6}[.][a-zA-z]{1,5}$$/ ;
             let testEmail = emailRegEx.test(value);
-            this.setState({ emailIsValid: testEmail })
+            this.setState({
+                emailIsValid: testEmail
+            })
         }
         if(name === 'phoneNumber'){
             let phoneNumberRegEx = /^[+]\d{12}$/;
             let testPhoneNumber = phoneNumberRegEx.test(value);
-            this.setState({ phoneNumberIsValid: testPhoneNumber });
+            this.setState({
+                phoneNumberIsValid: testPhoneNumber
+            });
         }
 
         this.setState({
@@ -131,7 +135,7 @@ export default class ContactEditModal extends React.Component {
 
                 <RaisedButton
                     label="Choose Photo"
-                    style={{width: "30%", minWidth: "150px"}}                    
+                    style={{width: "30%", minWidth: "150px"}}
                     className="upload-button"
                     onClick={ this.onFileUpload }
                 />

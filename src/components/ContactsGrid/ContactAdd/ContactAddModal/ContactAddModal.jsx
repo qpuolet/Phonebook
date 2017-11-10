@@ -31,17 +31,17 @@ export default class ContactAddModal extends React.Component {
 
         //Validation
         if(name === 'email'){
-            let emailRegEx = /^[a-zA-Z0-9\.]+@[a-zA-Z0-9]+(\-)?[a-zA-Z0-9]+(\.)?[a-zA-Z0-9]{2,6}?\.[a-zA-Z]{2,6}$/ ;
+            let emailRegEx = /^[a-zA-z\d\.]+@+[a-zA-z\d\.]{2,6}[.][a-zA-z]{1,5}$/ ;
             let testEmail = emailRegEx.test(value);
             this.setState({ emailIsValid: testEmail })
         }
         if(name === 'firstName'){
-            let firstNameRegEx = /[a-zA-Z]{1,10}$/;
+            let firstNameRegEx = /^[a-zA-Z]{1,10}$/;
             let testFirstName = firstNameRegEx.test(value);
             this.setState({ firstNameIsValid: testFirstName })
         }
         if(name === 'lastName'){
-            let lastNameRegEx = /[a-zA-Z]{1,10}$/;
+            let lastNameRegEx = /^[a-zA-Z]{1,10}$/;
             let testFirstName = lastNameRegEx.test(value);
             console.log(testFirstName);
             this.setState({ lastNameIsValid: testFirstName })
