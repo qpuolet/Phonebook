@@ -5,14 +5,12 @@ import ContactsGrid from './ContactsGrid/ContactsGrid.jsx';
 
 import data from '../contacts.js'
 
-const allData = data.slice();
-
 export default class ContactsApp extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            allData: allData,
-            contacts: data
+            contacts: data,
+            searchQuery: ''
         };
 
         this.handleContactAdd = this.handleContactAdd.bind(this);
@@ -23,67 +21,53 @@ export default class ContactsApp extends React.Component {
 
     handleContactAdd(newContact) {
         let freshContacts = this.state.contacts;
-        let freshData = this.state.allData;
+
         freshContacts.push(newContact);
-        freshData.push(newContact);
+
         this.setState({
-            contacts: freshContacts,
-            allData: freshData
+            contacts: freshContacts
         });
     }
 
     handleContactDelete(contact) {
         let contactId = contact.id;
+
         let newContacts = this.state.contacts.filter(contact => {
             return contact.id !== contactId;
         });
-        let newAllData = this.state.allData.filter(contact => {
-            return contact.id !== contactId;
-        });
+
         this.setState({
-            contacts: newContacts,
-            allData: newAllData
+            contacts: newContacts
         });
     }
 
     handleContactEdit(editedContact) {
         let editContactId = editedContact.id;
         let contacts = this.state.contacts;
-        let allData = this.state.allData;
 
         let contactsIndex = contacts.findIndex(contact => {
             return contact.id === editContactId
         });
-        let allDataIndex = this.state.allData.findIndex(contact => {
-            return contact.id === editContactId
-        });
 
         contacts[contactsIndex] = editedContact;
-        allData[allDataIndex] = editedContact;
 
         this.setState({
-            contacts: contacts,
-            allData: allData
+            contacts: contacts
         });
     }
 
     handleSearch(event) {
-        let searchContacts = this.state.allData;
-        let search = event.target.value;
-        if( search.length > 2){
-            let searchQuery = search.toLowerCase();
-            searchContacts = searchContacts.filter(contact => {
-                let firstName = contact.firstName.toLowerCase();
-                let lastName = contact.lastName.toLowerCase();
-                return firstName.indexOf(searchQuery) !== -1 || lastName.indexOf(searchQuery) !== -1;
-            });
-        }
+        let searchQuery = event.target.value;
+        searchQuery = searchQuery.length > 2? searchQuery.toLowerCase() : '';
         this.setState({
-            contacts: searchContacts
+            searchQuery: searchQuery
         });
     }
 
     render() {
+        const searchQuery = this.state.searchQuery;
+        const contacts = this.state.contacts;
+
         return (
             <div>
                 <SearchArea
@@ -93,7 +77,18 @@ export default class ContactsApp extends React.Component {
                     handleContactAdd={ this.handleContactAdd }
                     handleContactDelete={ this.handleContactDelete }
                     handleContactEdit={ this.handleContactEdit }
-                    contacts={ this.state.contacts }
+                    contacts={ searchQuery === ''?
+                        contacts :
+                        contacts.filter(
+                            ({firstName, lastName}) => {
+                                let firstNameLow = firstName.toLowerCase();
+                                let lastNameLow = lastName.toLowerCase();
+                                return (
+                                    firstNameLow.indexOf(searchQuery) !== -1 || lastNameLow.indexOf(searchQuery) !== -1
+                                )
+                            }
+                        )
+                    }
                 />
             </div>
         );
