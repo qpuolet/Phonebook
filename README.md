@@ -1,5 +1,5 @@
 # Phonebook
-Project developed on ReactJS using es6 classes and imports.
+Project developed on ReactJS and Redux.
 
 # Run Project
 To run project you need Node Package Manager instaled on your PC.
