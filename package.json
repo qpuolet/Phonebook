@@ -26,6 +26,8 @@
         "material-ui": "^0.19.4",
         "postcss-loader": "^0.9.1",
         "prop-types": "^15.5.10",
+        "react-redux": "^5.0.6",
+        "redux": "^3.7.2",
         "style-loader": "^0.13.1",
         "url-loader": "^0.5.7",
         "webpack": "^3.6.0",

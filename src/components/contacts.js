@@ -4,7 +4,7 @@ export default  [
         firstName: 'Anton',
         lastName: 'Kudryavtsev',
         email: 'qpuolet@gmail.com',
-        photo: './img/anton.jpg',
+        image: './img/anton.jpg',
         phoneNumber: '+375447369637',
     },
     {
@@ -12,7 +12,7 @@ export default  [
         firstName: 'Oleg',
         lastName: 'Lipskiy',
         email: 'onetwothree@gmail.com',
-        photo: './img/james.jpg',
+        image: './img/james.jpg',
         phoneNumber: '+375447369637',
     },
     {
@@ -20,7 +20,7 @@ export default  [
         firstName: 'James',
         lastName: 'McArthur',
         email: 'dasdsad@gmail.com',
-        photo: './img/paul.jpg',
+        image: './img/paul.jpg',
         phoneNumber: '+375447369637',
     },
     {
@@ -28,7 +28,7 @@ export default  [
         firstName: 'Peter',
         lastName: 'Parker',
         email: 'parker@gmail.com',
-        photo: './img/andrew.jpg',
+        image: './img/andrew.jpg',
         phoneNumber: '+375447369637',
     },
     {
@@ -36,7 +36,7 @@ export default  [
         firstName: 'Sam',
         lastName: 'Smith',
         email: 'whereareyounowwhenineedu@gmail.com',
-        photo: './img/paul.jpg',
+        image: './img/paul.jpg',
         phoneNumber: '+375447369637',
     },
     {
@@ -44,7 +44,7 @@ export default  [
         firstName: 'Maks',
         lastName: 'Somsonov',
         email: 'maks.samsonov@gmail.com',
-        photo: './img/james.jpg',
+        image: './img/james.jpg',
         phoneNumber: '+375447369637',
     },
     {
@@ -52,7 +52,7 @@ export default  [
         firstName: 'Antony',
         lastName: 'Checkhov',
         email: 'specabr@gmail.com',
-        photo: './img/anton.jpg',
+        image: './img/anton.jpg',
         phoneNumber: '+375447369637',
     },
     {
@@ -60,7 +60,7 @@ export default  [
         firstName: 'Rodrigues',
         lastName: 'Panamers',
         email: 'panames@gmail.com',
-        photo: './img/andrew.jpg',
+        image: './img/andrew.jpg',
         phoneNumber: '+375447369637',
     }
 ]

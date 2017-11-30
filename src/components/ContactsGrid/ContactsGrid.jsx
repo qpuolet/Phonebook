@@ -6,26 +6,19 @@ import ContactAdd from './ContactAdd/ContactAdd.jsx';
 import './ContactsGrid.css';
 
 export default class ContactsGrid extends React.Component {
-    constructor(props){
-        super(props);
-    }
 
     render() {
         return (
             <div className="Contacts">
-                <ContactAdd onAddContact={ this.props.handleContactAdd }/>
-
+                <ContactAdd
+                    onAdd={this.props.onAdd}
+                />
                 { this.props.contacts.map(contact => (
                             <ContactCard
-                                key={ contact.id }
-                                firstName={ contact.firstName }
-                                lastName={ contact.lastName }
-                                phoneNumber={ contact.phoneNumber }
-                                email={ contact.email }
-                                avatar={ contact.image }
-                                onDeleteContact={ this.props.handleContactDelete.bind(null, contact) }
-                                onEditContact={ this.props.handleContactEdit }
-                                editContact={ contact }
+                                key={contact.id}
+                                contact={contact}
+                                onSelect={() => this.props.onSelect(contact)}
+                                onDelete={() => this.props.onDelete(contact)}
                             />
                         )
                     )

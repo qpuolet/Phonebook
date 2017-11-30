@@ -1,42 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ContactEdit from './ContactEdit/ContactEdit.jsx'
-
 import './ContactCard.css';
 
 export default class ContactCard extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            visibility: 'hidden',
+            visibility: false,
         }
-        this.handleHoverOn = this.handleHoverOn.bind(this);
-        this.handleHoverOut = this.handleHoverOut.bind(this);
-    }
-
-    handleHoverOn() {
-        this.setState({ visibility: 'visible' })
-    }
-
-    handleHoverOut() {
-        this.setState({ visibility: 'hidden' })
     }
 
     render() {
+        const contact = this.props.contact;
         return (
-            <div className="contact" onMouseOver={this.handleHoverOn}  onMouseOut={this.handleHoverOut}>
-                <img className="avatar" src={this.props.avatar} />
+            <div
+                className="contact"
+                onMouseOver={this.handleHoverToggle}
+                onMouseOut={this.handleHoverToggle}
+            >
+                <img className="avatar" src={contact.photo} />
 
                 <address className="contact-info">
-                    <h3 className="name">{ this.props.firstName }</h3>
-                    <h3 className="name">{ this.props.lastName }</h3>
-                    <span>{ this.props.phoneNumber }</span>
+                    <h3 className="name">{ contact.firstName }</h3>
+                    <h3 className="name">{ contact.lastName }</h3>
+                    <span>{ contact.phoneNumber }</span>
                     <div>
-                        <a className="email-link" href={ this.props.email }>
-                            { this.props.email.length > 20?
-                                `${this.props.email.slice(0,19)}...`:
-                                this.props.email
+                        <a className="email-link" href={ contact.email }>
+                            { contact.email.length > 20?
+                                `${contact.email.slice(0,19)}...`:
+                                contact.email
                             }
                         </a>
                     </div>
@@ -44,18 +37,25 @@ export default class ContactCard extends React.Component {
                 <div className="card-manipulators">
                     <svg
                         className="icon icon-cross"
-                        style={{visibility: this.state.visibility }}
-                        onClick={ this.props.onDeleteContact }
+                        onClick={ this.props.onDelete }
                     >
                         <use href="#icon-cross"></use>
                     </svg>
-                    <ContactEdit
-                        visibility={ this.state.visibility }
-                        onEditContact={ this.props.onEditContact }
-                        editContact={ this.props.editContact }
-                    />
+                    <svg
+                        className="icon icon-pencil"
+                        onClick={ this.props.onSelect }
+                    >
+                        <use href="#icon-pencil"></use>
+                    </svg>
+
                 </div>
             </div>
         );
     }
 }
+
+// <ContactEdit
+//     visibility={ this.state.visibility }
+//     onEditContact={ this.props.onEditContact }
+//     editContact={ this.props.editContact }
+// />
