@@ -27,7 +27,8 @@
 
 .contact-info {
     padding: 20px 10px 10px 10px;
-    width: 135px;
+    width: 120px;
+    max-width: 130px;
 }
 
 .name {
@@ -47,11 +48,15 @@
 }
 
 .icon-cross {
+    position: relative;
+    left: 15px;
     height: 15px;
     width: 15px;
 }
 
 .icon-pencil {
+    position: relative;
+    right: 22px;
     height: 15px;
     width: 15px;
 }
