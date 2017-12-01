@@ -7,10 +7,8 @@ import {
     SEARCH_CONTACT
 } from './actions.js'
 
-import data from '../contacts.js';
-
 const initialState = {
-    contacts: data,
+    contacts: [],
     selectedContact: null,
     searchQuery: ''
 }
