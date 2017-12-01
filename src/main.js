@@ -4,7 +4,7 @@ import { createStore } from 'redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Provider } from 'react-redux'
 
-import App from './redux-modules/App.jsx'
+import Container from './redux-modules/Container.jsx'
 import reducer from './redux-modules/reducers.js'
 
 const store = createStore(
@@ -15,7 +15,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider>
-        <App />
+        <Container />
     </MuiThemeProvider>
   </Provider>,
   document.getElementById('mount-point')

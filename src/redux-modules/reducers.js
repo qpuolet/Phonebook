@@ -26,7 +26,7 @@ export default function contacts(state = initialState, action){
                 lastName: null,
                 email: null,
                 phoneNumber: null,
-                photo: null
+                photo: './img/default-user.png'
             }
             return Object.assign({}, state, { selectedContact })
         }

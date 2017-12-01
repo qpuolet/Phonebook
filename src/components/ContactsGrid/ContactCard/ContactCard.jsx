@@ -4,23 +4,12 @@ import ReactDOM from 'react-dom';
 import './ContactCard.css';
 
 export default class ContactCard extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            visibility: false,
-        }
-    }
 
     render() {
-        const contact = this.props.contact;
+        const {contact} = this.props;
         return (
-            <div
-                className="contact"
-                onMouseOver={this.handleHoverToggle}
-                onMouseOut={this.handleHoverToggle}
-            >
+            <div className="contact">
                 <img className="avatar" src={contact.photo} />
-
                 <address className="contact-info">
                     <h3 className="name">{ contact.firstName }</h3>
                     <h3 className="name">{ contact.lastName }</h3>
@@ -35,27 +24,14 @@ export default class ContactCard extends React.Component {
                     </div>
                 </address>
                 <div className="card-manipulators">
-                    <svg
-                        className="icon icon-cross"
-                        onClick={ this.props.onDelete }
-                    >
+                    <svg className="icon icon-cross" onClick={ this.props.onDelete }>
                         <use href="#icon-cross"></use>
                     </svg>
-                    <svg
-                        className="icon icon-pencil"
-                        onClick={ this.props.onSelect }
-                    >
+                    <svg className="icon icon-pencil" onClick={ this.props.onSelect }>
                         <use href="#icon-pencil"></use>
                     </svg>
-
                 </div>
             </div>
         );
     }
 }
-
-// <ContactEdit
-//     visibility={ this.state.visibility }
-//     onEditContact={ this.props.onEditContact }
-//     editContact={ this.props.editContact }
-// />

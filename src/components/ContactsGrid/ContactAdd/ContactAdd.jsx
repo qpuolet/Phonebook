@@ -7,7 +7,9 @@ export default class ContactAdd extends React.Component {
     render() {
         return (
             <div className="add-contact" onClick={ this.props.onAdd }>
-                <img className="add-contact-card" src="./img/add.png" />
+                <svg className="icon icon-user-plus">
+                    <use href="#icon-user-plus"></use>
+                </svg>
             </div>
         )
     }

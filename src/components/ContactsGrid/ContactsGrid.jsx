@@ -9,10 +9,8 @@ export default class ContactsGrid extends React.Component {
 
     render() {
         return (
-            <div className="Contacts">
-                <ContactAdd
-                    onAdd={this.props.onAdd}
-                />
+            <div className="contacts-grid">
+                <ContactAdd onAdd={this.props.onAdd} />
                 { this.props.contacts.map(contact => (
                             <ContactCard
                                 key={contact.id}

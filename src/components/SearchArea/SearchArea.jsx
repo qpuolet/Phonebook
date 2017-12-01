@@ -6,15 +6,13 @@ import './SearchArea.css';
 export default class SearchArea extends React.Component {
     render() {
         return (
-            <div className="search-area">
-                <div className="search-field">
+                <div className="search-area">
                     <input
                         type="text"
                         placeholder="SearchArea"
                         onChange={(e) => this.props.searchAction(e.target.value) }
                     />
                 </div>
-            </div>
         );
     }
 }

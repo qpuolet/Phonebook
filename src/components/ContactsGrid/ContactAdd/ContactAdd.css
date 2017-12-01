@@ -18,3 +18,10 @@
     height: 115px;
     border-radius: 50%;
 }
+
+.icon-user-plus {
+    align-self: center;
+    width: 100px;
+    height: 100px;
+    stroke-width: 0;
+}

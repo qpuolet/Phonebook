@@ -20,10 +20,10 @@ export default class ContactModal extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.validate = this.validate.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onFileUpload = this.onFileUpload.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
+        this.validate = this.validate.bind(this);
         this.isDisabled = this.isDisabled.bind(this);
     }
 
@@ -33,7 +33,7 @@ export default class ContactModal extends React.Component {
             const {lastName = ''} = nextProps.selectedContact || {};
             const {phoneNumber = ''} = nextProps.selectedContact || {};
             const {email = ''} = nextProps.selectedContact || {};
-            const {photo = ''} = nextProps.selectedContact || {};
+            const {photo = './img/default-user.png'} = nextProps.selectedContact;
             this.state = {
                 id: nextProps.selectedContact.id,
                 firstName: {value: firstName, isValid: this.validate('firstName', firstName )},
@@ -42,9 +42,7 @@ export default class ContactModal extends React.Component {
                 email: {value: email, isValid: this.validate('email', email )},
                 photo: {value: photo}
             };
-            this.isDisabled()
         }
-
     }
 
     handleChange(event) {
@@ -64,16 +62,16 @@ export default class ContactModal extends React.Component {
             return emailRegEx.test(value);
         }
         if(name === 'firstName'){
-            const firstNameRegEx = /^[a-zA-Z]{1,10}$/;
+            const firstNameRegEx = /^[a-zA-Z]{1,15}$/;
             return firstNameRegEx.test(value);
         }
         if(name === 'lastName'){
-            const lastNameRegEx = /^[a-zA-Z]{1,10}$/;
+            const lastNameRegEx = /^[a-zA-Z]{1,15}$/;
             return lastNameRegEx.test(value);
         }
         if(name === 'phoneNumber'){
             const phoneNumberRegEx = /^[+]\d{12}$/;
-            return phoneNumberRegEx.test(value)
+            return phoneNumberRegEx.test(value);
         }
     }
 
@@ -83,8 +81,6 @@ export default class ContactModal extends React.Component {
             this.state.phoneNumber.isValid &&
             this.state.email.isValid ? false : true
     }
-
-
 
     handleSubmit(event) {
         event.preventDefault();
@@ -117,6 +113,7 @@ export default class ContactModal extends React.Component {
     }
 
     render() {
+        const isOpen = this.props.selectedContact? true : false;
         const actions = [
             <FlatButton
                 label="Cancel"
@@ -128,9 +125,8 @@ export default class ContactModal extends React.Component {
                 primary={true}
                 disabled={this.isDisabled()}
                 onClick={this.handleSubmit}
-            />,
+            />
         ];
-        const isOpen = this.props.selectedContact? true : false;
         return (
             <Dialog
                 title='Contact Card'
@@ -144,14 +140,16 @@ export default class ContactModal extends React.Component {
                     floatingLabelText="First Name"
                     onChange={ this.handleChange }
                     name="firstName"
-                    maxLength="16"
+                    maxLength="15"
+                    errorText={this.state.firstName.isValid? '':'Required!'}
                     defaultValue={this.state.firstName.value}
                 />
                 <TextField
                     floatingLabelText="Last Name"
                     onChange={ this.handleChange }
                     name="lastName"
-                    maxLength="16"
+                    maxLength="15"
+                    errorText={this.state.lastName.isValid? '':'Required!'}
                     defaultValue={this.state.lastName.value}
                 />
                 <TextField
@@ -159,25 +157,40 @@ export default class ContactModal extends React.Component {
                     onChange={ this.handleChange }
                     name="phoneNumber"
                     maxLength="13"
-                    errorText={this.state.phoneNumber.isValid? '':'Required!'}
+                    errorText={
+                        this.state.phoneNumber.isValid ||
+                        this.state.phoneNumber.value === null ||
+                        this.state.phoneNumber.value.length <13 ?
+                        '' :
+                        'Correct value looks like this +375441234567'
+                    }
                     defaultValue={this.state.phoneNumber.value}
                 />
                 <TextField
                     floatingLabelText="E-mail"
                     onChange={ this.handleChange }
                     name="email"
-                    errorText={this.state.email.isValid? '':'Required!'}
+                    errorText={
+                        this.state.email.isValid ||
+                        this.state.email.value === null?
+                        '' :
+                        'Required!'
+                    }
                     defaultValue={this.state.email.value}
                 />
-
                 <RaisedButton
                     label="Choose Photo"
                     className="upload-button"
                     style={{width: "30%", minWidth: "150px"}}
                     onClick={ this.onFileUpload }
                 />
-                <p>{ this.state.photo.value? 'Photo loaded':'No photo loaded' }</p>
-                    <input
+                <p>
+                    { this.state.photo.value !== './img/default-user.png'?
+                        'Photo loaded' :
+                        'No photo loaded'
+                    }
+                </p>
+                <input
                     type="file"
                     style={{visibility: 'hidden'}}
                     name="photo"
